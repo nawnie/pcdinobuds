@@ -6,7 +6,7 @@ The current direction is a Yoshi-owned host/runtime and renderer, developed in s
 
 ## Current work
 
-- `independent-runtime/`: a guest ABI adapter pilot, with table validation and synthetic lookup tests. It still consumes the legacy CPU headers. It does not yet implement an independent loader, services, renderer, or boot.
+- `independent-runtime/`: a guest ABI adapter, checked module-image loading and owned Windows address reservations. It still consumes the legacy CPU headers. It does not yet parse NSO inputs, resolve full relocations/imports, provide services, render or boot the game.
 - `runtime/`, `recomp/`, and existing tools: preserved legacy source baseline. Later local gameplay experiments have not been comprehensively reconciled into this checkout.
 - [Engineering checkpoint](docs/continuation-2026-11-14.md): measured results, current failures, and the next implementation steps.
 - [Historical build guide](docs/legacy-build-guide.md): instructions for the inherited baseline. The historical status page is not current acceptance evidence.
