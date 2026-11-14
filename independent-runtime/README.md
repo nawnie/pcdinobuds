@@ -42,3 +42,31 @@ The test pins all Cpu fields' offsets, size and alignment for a 64-bit host.
 The real generated subsdk0 chunk includes `cpu.h` and declares `void f_...(Cpu*)`.
 Next link real generated functions in a bounded harness and resolve their host
 service dependencies; preserve the installed executable and active checkout.
+
+## Checked guest memory and module image pilot
+
+`guest_memory` registers caller-owned backing ranges and checks overflow,
+overlap, bounds, and requested permissions before resolving an address. The
+caller is responsible for reserving and protecting host memory and synchronizing
+access. A separate identity check makes explicit that generated guest code uses
+guest addresses as host pointers. Buffer-backed mappings are for tests and must
+not be used to execute the existing generated code. Registration and its checks
+are metadata only and cannot enforce operating-system permissions.
+
+On Windows, `guest_memory_windows` can reserve and commit an exact, aligned guest
+address as an owned identity mapping. Its owner releases the exact reservation;
+whole-region read-only/read-write sealing uses `VirtualProtect` and updates the
+mapping metadata after OS success. Owners are caller-managed, must not be copied,
+and are not a security boundary. The address space and owner require external
+synchronization. Other platforms return unsupported. Tests use an ephemeral
+OS-selected address, not a game address. Subregion protection is not provided.
+
+The module-image contract validates ordered text, rodata and page-aligned data,
+then zeros a writable image and copies supplied disjoint segment buffers. It
+accepts a decoded relative relocation only within the module's data-to-end
+range and writes it little-endian. It does not read or verify NSO files, reserve
+fixed addresses, implement symbol relocations or RELR, resolve imports, protect
+text, initialize TLS, call constructors, or boot. Only synthetic memory and
+relocation fixtures have been tested. The observed layout is generated separately
+from this API; consumers must verify module names, sizes, bases and image hashes
+against their build's layout and inputs before loading.
