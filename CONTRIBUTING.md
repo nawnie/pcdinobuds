@@ -22,7 +22,7 @@ Never bypass a failing check with `--no-verify`.
 
 ## Licensing and third-party code
 
-See [LEGAL.md](LEGAL.md) and [AGENTS.md](AGENTS.md). `yoshi4pc` is GPL-3.0-or-later as a whole (`LICENSE`), while upstream files from TotK Recomp keep MIT (`LICENSE-MIT`). Copy only compatible MIT / BSD / ISC / zlib / Apache-2.0 / GPL-3.0-compatible code, preserve headers, and record the upstream commit in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+See [LEGAL.md](LEGAL.md) and [AGENTS.md](AGENTS.md). `pcdinobuds` is GPL-3.0-or-later as a whole (`LICENSE`), while upstream files from TotK Recomp keep MIT (`LICENSE-MIT`). Copy only compatible MIT / BSD / ISC / zlib / Apache-2.0 / GPL-3.0-compatible code, preserve headers, and record the upstream commit in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## Reporting bugs
 

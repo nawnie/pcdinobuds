@@ -1,3 +1,5 @@
+> Historical baseline. For the current direction and acceptance limits see [the November 14 checkpoint](continuation-2026-11-14.md).
+
 # Yoshi and the Mysterious Book (`yoshi4pc`) — Current Status
 
 Target verified against ExeFS hash manifest [tools/data/expected-yoshi131072.json](../tools/data/expected-yoshi131072.json):

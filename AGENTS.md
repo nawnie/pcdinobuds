@@ -1,10 +1,10 @@
-# yoshi4pc (`Yoshi and the Mysterious Book` Recomp)
+# pcdinobuds (`Yoshi and the Mysterious Book` Recomp)
 
-Experimental static recompilation of *Yoshi and the Mysterious Book* (Nintendo Switch 2, ARM64, Ver. `1.0.2` / title version `131072`) into a native Windows x86-64 executable (`yoshi.exe`) with a Vulkan renderer, forked from `dkb-pc-recomp` (itself built on `totk-pc-recomp`). Most of the lifter, host kernel, and Vulkan backend come from `totk-pc-recomp` and `dkb-pc-recomp`; see [docs/yoshi-status.md](docs/yoshi-status.md) for current bring-up status and [docs/architecture.md](docs/architecture.md) for architecture notes.
+Experimental static recompilation of *Yoshi and the Mysterious Book* (Nintendo Switch 2, ARM64, Ver. `1.0.2` / title version `131072`) into a native Windows x86-64 executable (`yoshi.exe`) with a Vulkan renderer, forked from `dkb-pc-recomp` (itself built on `totk-pc-recomp`). Most of the lifter, host kernel, and Vulkan backend come from `totk-pc-recomp` and `dkb-pc-recomp`; see [docs/yoshi-status.md](docs/yoshi-status.md) for historical bring-up status and [docs/architecture.md](docs/architecture.md) for architecture notes.
 
 ## Game content boundary
 
-This repository is public. Game containers (`.nup`), keys, extracted ExeFS/RomFS trees, generated C files, compiled binaries, and shader caches stay outside git in ignored folders.
+Keep this repository safe to publish regardless of its current visibility. Game containers (`.nup`), keys, extracted ExeFS/RomFS trees, generated C files, compiled binaries, and shader caches stay outside git in ignored folders.
 
 - Personal paths belong only in `config.local.toml` (ignored). Keys never appear in logs, outputs, commands, or commits.
 - Everything extracted or generated goes under `build/` or `generated/` (or ignored `build-*/` and `generated-*/`).
@@ -25,3 +25,7 @@ This repository is public. Game containers (`.nup`), keys, extracted ExeFS/RomFS
 - Never hand-edit generated C: fix `recomp/` or `runtime/` overrides instead.
 - Any lifter/SIMD change in `recomp/` must pass differential checks against Unicorn (`tests/yoshi_udot_check.py`, `docs/building.md`).
 - Comments, documentation, and commit messages are in English; commit messages are plain sentences without conventional-commit type prefixes.
+
+## Current development direction
+
+Read `docs/continuation-2026-11-14.md` before runtime work. Develop the independent host in `independent-runtime/`; keep the inherited runtime as the regression reference. Do not infer that local gameplay fixes are included in this tracked baseline.

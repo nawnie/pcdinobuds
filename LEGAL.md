@@ -6,4 +6,4 @@ Running the build requires your own legally obtained dump of *Yoshi and the Myst
 
 This project is not affiliated with or endorsed by Nintendo. All trademarks remain the property of their respective owners.
 
-`yoshi4pc` is distributed under GPL-3.0-or-later as a whole (`LICENSE`) because it carries Eglantine's GPL Ampere shader lowering (`runtime/third_party/eglantine/`). Files originating from TotK Recomp retain their MIT terms (`LICENSE-MIT`); see `THIRD_PARTY_NOTICES.md` for full upstream attributions and per-component licenses.
+`pcdinobuds` is distributed under GPL-3.0-or-later as a whole (`LICENSE`) because it carries Eglantine's GPL Ampere shader lowering (`runtime/third_party/eglantine/`). Files originating from TotK Recomp retain their MIT terms (`LICENSE-MIT`); see `THIRD_PARTY_NOTICES.md` for full upstream attributions and per-component licenses.
