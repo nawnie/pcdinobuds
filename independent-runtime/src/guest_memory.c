@@ -81,7 +81,8 @@ YoshiMemoryStatus yoshi_module_load(YoshiAddressSpace *s, const YoshiModuleImage
 
 YoshiMemoryStatus yoshi_module_relocate_relative(YoshiAddressSpace *s, const YoshiModuleImage *m,
                                                   uint64_t offset, int64_t addend) {
-    if (!image_ok(m) || offset < m->data.offset || offset > m->size || m->size - offset < 8)
+    if (!image_ok(m) || offset < m->data.offset || offset - m->data.offset > m->data.size ||
+        m->data.size - (offset - m->data.offset) < 8)
         return YOSHI_MEMORY_INVALID;
     void *host;
     YoshiMemoryStatus status = yoshi_memory_resolve(s, m->base + offset, 8, YOSHI_MEM_WRITE, &host);

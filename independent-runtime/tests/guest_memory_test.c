@@ -36,9 +36,11 @@ int main(void) {
     bad = image; bad.data.offset = 0x1001;
     CHECK(yoshi_module_load(&space, &bad) == YOSHI_MEMORY_INVALID);
     CHECK(yoshi_module_relocate_relative(&space, &image, 0xfff, 0) == YOSHI_MEMORY_INVALID);
-    CHECK(yoshi_module_relocate_relative(&space, &image, 0x1ff9, 0) == YOSHI_MEMORY_INVALID);
-    CHECK(yoshi_module_relocate_relative(&space, &image, 0x1ff8, -1) == YOSHI_MEMORY_OK);
+    CHECK(yoshi_module_relocate_relative(&space, &image, 0x1009, 0) == YOSHI_MEMORY_INVALID);
+    CHECK(yoshi_module_relocate_relative(&space, &image, 0x1010, 0) == YOSHI_MEMORY_INVALID);
+    CHECK(backing[0x1010] == 0);
+    CHECK(yoshi_module_relocate_relative(&space, &image, 0x1008, -1) == YOSHI_MEMORY_OK);
     const unsigned char expected[] = {0xff,0xff,0x0f,0,0,0,0,0};
-    CHECK(memcmp(backing + 0x1ff8, expected, sizeof expected) == 0);
+    CHECK(memcmp(backing + 0x1008, expected, sizeof expected) == 0 && backing[0x1010] == 0);
     puts("guest memory tests passed");
 }

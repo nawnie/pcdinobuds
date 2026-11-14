@@ -63,8 +63,10 @@ OS-selected address, not a game address. Subregion protection is not provided.
 
 The module-image contract validates ordered text, rodata and page-aligned data,
 then zeros a writable image and copies supplied disjoint segment buffers. It
-accepts a decoded relative relocation only within the module's data-to-end
-range and writes it little-endian. It does not read or verify NSO files, reserve
+defines data segment size as initialized data plus declared BSS; its input byte
+count covers initialized data only. A decoded relative relocation must fit fully
+within that segment, excluding trailing image alignment padding. It writes the
+relocation little-endian. It does not read or verify NSO files, reserve
 fixed addresses, implement symbol relocations or RELR, resolve imports, protect
 text, initialize TLS, call constructors, or boot. Only synthetic memory and
 relocation fixtures have been tested. The observed layout is generated separately

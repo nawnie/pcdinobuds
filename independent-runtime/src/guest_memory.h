@@ -31,6 +31,8 @@ typedef struct YoshiImageSegment {
     const unsigned char *bytes;
     size_t bytes_size;
 } YoshiImageSegment;
+/* For data, size covers initialized data plus declared BSS; bytes_size covers
+   only initialized data. Image alignment padding is outside the data segment. */
 typedef struct YoshiModuleImage {
     uint64_t base, size;
     YoshiImageSegment text, rodata, data;
@@ -39,7 +41,8 @@ typedef struct YoshiModuleImage {
 /* Caller supplies a full writable mapping and disjoint input buffers. The image
    is zero-filled then segments are copied, only after all checks succeed. */
 YoshiMemoryStatus yoshi_module_load(YoshiAddressSpace *space, const YoshiModuleImage *image);
-/* Store one already-decoded AArch64 RELATIVE relocation, little-endian, in data.
+/* Store one already-decoded AArch64 RELATIVE relocation wholly inside data,
+   including declared BSS but excluding image alignment padding, little-endian.
    Arithmetic follows 64-bit unsigned wraparound; no symbol lookup is implied. */
 YoshiMemoryStatus yoshi_module_relocate_relative(YoshiAddressSpace *space,
                                                   const YoshiModuleImage *image,
